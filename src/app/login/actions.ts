@@ -11,7 +11,7 @@ export async function loginAction(formData: FormData) {
     return { error: 'Sistema no configurado. Contactá al administrador.' };
   }
 
-  if (password !== appPassword) {
+  if (password.trim() !== appPassword.trim()) {
     return { error: 'Contraseña incorrecta.' };
   }
 
