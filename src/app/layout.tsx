@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Tienda",
   },
+  icons: {
+    icon: '/icon',
+    apple: '/icon',
+  },
 };
 
 export const viewport: Viewport = {
