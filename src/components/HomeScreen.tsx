@@ -3,6 +3,7 @@
 import React from 'react';
 import { useStore } from '@/store/StoreContext';
 import { ShirtIcon, ClockIcon, UsersIcon, SunIcon, MoonIcon, PackageIcon, ChevronRight } from './Icons';
+import { logoutAction } from '@/app/login/actions';
 
 export default function HomeScreen({ onGoToClients, onGoToAdd, onGoToHistory, onClientSelect, onGoToInventory }: {
   onGoToClients: () => void;
@@ -45,14 +46,27 @@ export default function HomeScreen({ onGoToClients, onGoToAdd, onGoToHistory, on
           <p className="home-date">{todayLabel}</p>
           <h1 className="ios-nav-title" style={{ fontSize: 28, lineHeight: 1.1 }}>Tienda</h1>
         </div>
-        <button
-          onClick={toggleDarkMode}
-          className="ios-btn-icon"
-          style={{ width: 36, height: 36, color: 'var(--text-secondary)', background: 'var(--bg-secondary)', boxShadow: 'var(--shadow-xs)', borderRadius: '50%' }}
-          aria-label={isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'}
-        >
-          {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-        </button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button
+            onClick={toggleDarkMode}
+            className="ios-btn-icon"
+            style={{ width: 36, height: 36, color: 'var(--text-secondary)', background: 'var(--bg-secondary)', boxShadow: 'var(--shadow-xs)', borderRadius: '50%' }}
+            aria-label={isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'}
+          >
+            {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+          </button>
+          <form action={logoutAction}>
+            <button
+              type="submit"
+              className="ios-btn-icon"
+              style={{ width: 36, height: 36, color: 'var(--text-secondary)', background: 'var(--bg-secondary)', boxShadow: 'var(--shadow-xs)', borderRadius: '50%', fontSize: 16 }}
+              aria-label="Cerrar sesión"
+              title="Cerrar sesión"
+            >
+              🔒
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* ── Financial summary hero card ── */}
