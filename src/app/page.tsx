@@ -16,8 +16,8 @@ import ExpensesScreen from '@/components/ExpensesScreen';
 
 import { Suspense } from 'react';
 
-type Tab = 'home' | 'clients' | 'add' | 'history' | 'dashboard';
-type SubScreen = 'inventory' | 'expenses' | 'purchases' | null;
+type Tab = 'home' | 'clients' | 'add' | 'inventory' | 'history' | 'dashboard';
+type SubScreen = 'expenses' | 'purchases' | null;
 
 function AppContent() {
   const searchParams = useSearchParams();
@@ -58,12 +58,6 @@ function AppContent() {
     );
   }
 
-  if (currentSubScreen === 'inventory') {
-    return renderStandaloneScreen(
-      <InventoryScreen onBack={() => setCurrentSubScreen(null)} />
-    );
-  }
-
   if (currentSubScreen === 'expenses') {
     return renderStandaloneScreen(
       <ExpensesScreen onBack={() => setCurrentSubScreen(null)} />
@@ -95,7 +89,7 @@ function AppContent() {
           onGoToAdd={() => setIsAddingSale(true)}
           onGoToHistory={() => setActiveTab('history')}
           onClientSelect={setSelectedClientId}
-          onGoToInventory={() => setCurrentSubScreen('inventory')}
+          onGoToInventory={() => setActiveTab('inventory')}
         />
       )}
 
@@ -113,9 +107,16 @@ function AppContent() {
         />
       )}
 
+      {activeTab === 'inventory' && (
+        <InventoryScreen
+          onBack={() => setActiveTab('home')}
+          showRootBack={false}
+        />
+      )}
+
       {activeTab === 'dashboard' && (
         <DashboardScreen
-          onGoToInventory={() => setCurrentSubScreen('inventory')}
+          onGoToInventory={() => setActiveTab('inventory')}
           onGoToExpenses={() => setCurrentSubScreen('expenses')}
           onGoToPurchases={() => setCurrentSubScreen('purchases')}
           onGoToDebtors={goToDebtors}

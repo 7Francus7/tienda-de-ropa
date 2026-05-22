@@ -9,7 +9,13 @@ import { ProductVariant, ProductWithVariants, StockMovement } from '@/types';
 
 type View = 'list' | 'addProduct' | 'editProduct' | 'productDetail';
 
-export default function InventoryScreen({ onBack }: { onBack: () => void }) {
+export default function InventoryScreen({
+  onBack,
+  showRootBack = true,
+}: {
+  onBack: () => void;
+  showRootBack?: boolean;
+}) {
   const { products, addProduct, updateProduct, deleteProduct, addVariant, updateVariant, deleteVariant, adjustVariantStock } = useStore();
   const { showToast } = useToast();
 
@@ -393,7 +399,11 @@ export default function InventoryScreen({ onBack }: { onBack: () => void }) {
   return (
     <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}><ChevronLeft size={24} /> Volver</button>
+        {showRootBack ? (
+          <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}><ChevronLeft size={24} /> Volver</button>
+        ) : (
+          <div style={{ width: 60 }} />
+        )}
         <span style={{ fontWeight: 600, fontSize: 17 }}>Inventario</span>
         <button className="ios-btn-icon" onClick={() => { resetProductForm(); setView('addProduct'); }}><PlusIcon size={24} /></button>
       </div>

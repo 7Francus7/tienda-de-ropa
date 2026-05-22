@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { HomeIcon, UsersIcon, PlusIcon, ClockIcon, ChartIcon } from './Icons';
+import { HomeIcon, UsersIcon, PlusIcon, ClockIcon, ChartIcon, PackageIcon } from './Icons';
 import { hapticFeedback } from '@/utils/haptics';
 
-type TabType = 'home' | 'clients' | 'add' | 'history' | 'dashboard';
+type TabType = 'home' | 'clients' | 'add' | 'inventory' | 'history' | 'dashboard';
 
 interface TabBarProps {
   activeTab: TabType;
@@ -16,6 +16,7 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
     { id: 'home' as const, label: 'Inicio', icon: HomeIcon },
     { id: 'clients' as const, label: 'Clientes', icon: UsersIcon },
     { id: 'add' as const, label: 'Venta', icon: PlusIcon },
+    { id: 'inventory' as const, label: 'Stock', icon: PackageIcon },
     { id: 'history' as const, label: 'Historial', icon: ClockIcon },
     { id: 'dashboard' as const, label: 'Balance', icon: ChartIcon },
   ];
