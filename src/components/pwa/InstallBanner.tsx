@@ -11,7 +11,7 @@ export function InstallBanner() {
   if (!isInstallable || dismissed) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 p-4 bg-black text-white dark:bg-white dark:text-black flex items-center justify-between shadow-lg safe-area-top animate-in slide-in-from-top-2">
+    <div className="fixed top-0 left-0 right-0 z-50 p-4 bg-black text-white dark:bg-white dark:text-black flex items-center justify-between shadow-lg safe-area-top animate-in slide-in-from-top-2 xl:hidden">
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 bg-white/20 dark:bg-black/10 rounded-xl flex items-center justify-center shrink-0">
           <Download className="w-5 h-5" />

@@ -114,7 +114,7 @@ export default function AddSaleScreen({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div className="animate-fade-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}>
           <ChevronLeft size={24} /> Volver
@@ -123,8 +123,8 @@ export default function AddSaleScreen({ onBack }: { onBack: () => void }) {
         <div style={{ width: 68 }} />
       </div>
 
-      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
-        <form onSubmit={handleSubmit}>
+      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
+        <form onSubmit={handleSubmit} className="form-shell">
           {/* Cliente + Fecha */}
           <p className="ios-section-header">Cliente</p>
           <div className="ios-input-group" style={{ marginBottom: 24 }}>

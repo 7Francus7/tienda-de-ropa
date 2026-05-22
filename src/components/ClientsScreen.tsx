@@ -13,7 +13,7 @@ export default function ClientsScreen({ onClientSelect, onAddNewClient }: {
   const filteredClients = searchClients(query);
 
   return (
-    <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div className="animate-fade-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
       <div className="ios-nav" style={{ padding: '16px 16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
           <h1 className="ios-nav-title">Clientes</h1>
@@ -27,7 +27,7 @@ export default function ClientsScreen({ onClientSelect, onAddNewClient }: {
         </div>
       </div>
 
-      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
+      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
         {filteredClients.length === 0 ? (
           <div className="ios-empty">
             <div className="ios-empty-icon"><UserIcon size={24} /></div>

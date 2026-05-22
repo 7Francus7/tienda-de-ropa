@@ -24,8 +24,11 @@ export default function HistoryScreen({
   }, [sales, getClient, statusFilter]);
 
   const grouped = useMemo(() => {
-    const today = new Date().toISOString().split('T')[0];
-    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+    const todayDate = new Date();
+    const today = todayDate.toISOString().split('T')[0];
+    const yesterdayDate = new Date(todayDate);
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    const yesterday = yesterdayDate.toISOString().split('T')[0];
     const map = new Map<string, typeof displaySales>();
     for (const s of displaySales) {
       if (!map.has(s.date)) map.set(s.date, []);
@@ -45,7 +48,7 @@ export default function HistoryScreen({
   }, [displaySales]);
 
   return (
-    <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div className="animate-fade-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
       <div className="ios-nav" style={{ padding: '16px 16px 12px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <h1 className="ios-nav-title" style={{ margin: 0 }}>Historial</h1>
@@ -65,7 +68,7 @@ export default function HistoryScreen({
         </div>
       </div>
 
-      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
+      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
         {grouped.length === 0 ? (
           <div className="ios-empty">
             <div className="ios-empty-icon"><ClockIcon size={24} /></div>

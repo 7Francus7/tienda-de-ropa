@@ -46,24 +46,38 @@ function AppContent() {
     setActiveTab('history');
   };
 
+  const renderStandaloneScreen = (screen: React.ReactNode) => (
+    <div className="desktop-standalone-stage">
+      {screen}
+    </div>
+  );
+
   if (selectedClientId) {
-    return <ClientProfile clientId={selectedClientId} onBack={() => setSelectedClientId(null)} />;
+    return renderStandaloneScreen(
+      <ClientProfile clientId={selectedClientId} onBack={() => setSelectedClientId(null)} />
+    );
   }
 
   if (currentSubScreen === 'inventory') {
-    return <InventoryScreen onBack={() => setCurrentSubScreen(null)} />;
+    return renderStandaloneScreen(
+      <InventoryScreen onBack={() => setCurrentSubScreen(null)} />
+    );
   }
 
   if (currentSubScreen === 'expenses') {
-    return <ExpensesScreen onBack={() => setCurrentSubScreen(null)} />;
+    return renderStandaloneScreen(
+      <ExpensesScreen onBack={() => setCurrentSubScreen(null)} />
+    );
   }
 
   if (currentSubScreen === 'purchases') {
-    return <PurchaseScreen onBack={() => setCurrentSubScreen(null)} />;
+    return renderStandaloneScreen(
+      <PurchaseScreen onBack={() => setCurrentSubScreen(null)} />
+    );
   }
 
   if (isAddingSale || activeTab === 'add') {
-    return (
+    return renderStandaloneScreen(
       <AddSaleScreen
         onBack={() => {
           setIsAddingSale(false);
@@ -73,7 +87,7 @@ function AppContent() {
     );
   }
 
-  return (
+  const mainScreen = (
     <>
       {activeTab === 'home' && (
         <HomeScreen
@@ -118,7 +132,11 @@ function AppContent() {
           }}
         />
       )}
+    </>
+  );
 
+  return (
+    <div className="desktop-app-shell">
       <TabBar
         activeTab={activeTab}
         onTabChange={tab => {
@@ -133,7 +151,10 @@ function AppContent() {
           }
         }}
       />
-    </>
+      <div className="desktop-main-stage">
+        {mainScreen}
+      </div>
+    </div>
   );
 }
 

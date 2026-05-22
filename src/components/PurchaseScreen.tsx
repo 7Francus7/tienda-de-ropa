@@ -96,7 +96,7 @@ export default function PurchaseScreen({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+    <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}>
           <ChevronLeft size={24} /> Volver
@@ -105,8 +105,8 @@ export default function PurchaseScreen({ onBack }: { onBack: () => void }) {
         <div style={{ width: 60 }} />
       </div>
 
-      <form onSubmit={handleSubmit} style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
-        <div className="screen-content">
+      <form onSubmit={handleSubmit} style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
+        <div className="screen-content form-shell">
 
           {/* General info */}
           <div className="ios-input-group" style={{ marginBottom: 24 }}>

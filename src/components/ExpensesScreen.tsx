@@ -51,14 +51,14 @@ export default function ExpensesScreen({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+    <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}><ChevronLeft size={24} /> Volver</button>
         <span style={{ fontWeight: 600, fontSize: 17 }}>Gastos</span>
         <button className="ios-btn-icon" onClick={() => setShowAddForm(true)}><PlusIcon size={24} /></button>
       </div>
 
-      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
+      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
         {expenses.length > 0 && (
           <div className="ios-card" style={{ padding: 18, marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>

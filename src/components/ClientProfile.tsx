@@ -241,7 +241,7 @@ export default function ClientProfile({ clientId, onBack }: {
   };
 
   return (
-    <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+    <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
       {/* Nav */}
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}>
@@ -257,7 +257,7 @@ export default function ClientProfile({ clientId, onBack }: {
         </button>
       </div>
 
-      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
         {/* Profile Header */}
         <div style={{ padding: '28px 16px 24px', textAlign: 'center', background: 'var(--bg-secondary)', borderBottom: '0.5px solid var(--separator-opaque)' }}>
           <div className="ios-avatar lg" style={{

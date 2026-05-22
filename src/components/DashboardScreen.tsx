@@ -204,7 +204,7 @@ export default function DashboardScreen({
   }, [sales, payments, expenses, products]);
 
   return (
-    <div className="animate-fade-in screen-content" style={{ paddingBottom: '100px' }}>
+    <div className="animate-fade-in screen-content app-screen-shell" style={{ paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
 
       {/* Header */}
       <div className="ios-nav" style={{ padding: '12px 0 16px', borderBottom: 'none' }}>

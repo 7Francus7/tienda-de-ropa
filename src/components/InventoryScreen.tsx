@@ -176,14 +176,14 @@ export default function InventoryScreen({ onBack }: { onBack: () => void }) {
   // ── PRODUCT DETAIL ─────────────────────────────────────────────────────────
   if (view === 'productDetail' && currentProduct) {
     return (
-      <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+      <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
         <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button className="ios-btn-text" style={{ padding: 0 }} onClick={() => { setView('list'); setViewingMovementsFor(null); }}><ChevronLeft size={24} /> Volver</button>
           <span style={{ fontWeight: 600, fontSize: 17, flex: 1, textAlign: 'center', marginRight: 60, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{currentProduct.name}</span>
           <button className="ios-btn-icon" style={{ color: 'var(--accent)' }} onClick={() => openEditProduct(currentProduct)}><EditIcon size={20} /></button>
         </div>
 
-        <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '120px' }}>
+        <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 120px)' }}>
           {/* Product info */}
           <div className="ios-card" style={{ padding: '16px', marginBottom: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -341,14 +341,14 @@ export default function InventoryScreen({ onBack }: { onBack: () => void }) {
   // ── ADD / EDIT PRODUCT FORM ────────────────────────────────────────────────
   if (view === 'addProduct' || view === 'editProduct') {
     return (
-      <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+      <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
         <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button className="ios-btn-text" style={{ padding: 0 }} onClick={() => setView('list')}><ChevronLeft size={24} /> Volver</button>
           <span style={{ fontWeight: 600, fontSize: 17 }}>{view === 'addProduct' ? 'Nuevo Producto' : 'Editar Producto'}</span>
           <div style={{ width: 60 }} />
         </div>
-        <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
-          <form onSubmit={view === 'addProduct' ? handleAddProduct : handleUpdateProduct}>
+        <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
+          <form onSubmit={view === 'addProduct' ? handleAddProduct : handleUpdateProduct} className="form-shell">
             <div className="ios-input-group" style={{ marginBottom: 24 }}>
               <div className="ios-input-row"><label>Nombre *</label><input type="text" value={pName} onChange={e => setPName(e.target.value)} required placeholder="Ej: Remera Oversize Básica" autoFocus /></div>
               <div className="ios-input-row">
@@ -391,14 +391,14 @@ export default function InventoryScreen({ onBack }: { onBack: () => void }) {
 
   // ── PRODUCT LIST ────────────────────────────────────────────────────────────
   return (
-    <div className="animate-slide-in" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
+    <div className="animate-slide-in app-screen-shell desktop-fixed-screen" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg-primary)' }}>
       <div className="ios-nav" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button className="ios-btn-text" style={{ padding: 0 }} onClick={onBack}><ChevronLeft size={24} /> Volver</button>
         <span style={{ fontWeight: 600, fontSize: 17 }}>Inventario</span>
         <button className="ios-btn-icon" onClick={() => { resetProductForm(); setView('addProduct'); }}><PlusIcon size={24} /></button>
       </div>
 
-      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: '100px' }}>
+      <div className="screen-content" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--screen-bottom-space, 100px)' }}>
         {/* Stats */}
         {products.length > 0 && (
           <>

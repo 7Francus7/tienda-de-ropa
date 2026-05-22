@@ -107,6 +107,13 @@ body {
   min-height: 100dvh;
   line-height: 1.47;
   letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
 }
 
 /* ============================================================
@@ -720,6 +727,29 @@ body {
    ============================================================ */
 .screen-content {
   padding: 0 16px 16px;
+  width: 100%;
+}
+
+.desktop-app-shell,
+.desktop-main-stage,
+.desktop-standalone-stage,
+.app-screen-shell {
+  width: 100%;
+}
+
+.desktop-nav-brand,
+.desktop-nav-footer {
+  display: none;
+}
+
+.desktop-nav-links {
+  display: contents;
+}
+
+.form-shell {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
 }
 
 /* ============================================================
@@ -764,7 +794,7 @@ body {
 @media (min-width: 768px) {
   /* Tablet: wider container to use iPad screen properly */
   .app-container {
-    max-width: 960px;
+    max-width: 1040px;
     margin: 0 auto;
     min-height: 100dvh;
     position: relative;
@@ -783,14 +813,14 @@ body {
   /* Home: two-column layout on iPad */
   .home-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
     gap: 28px;
     align-items: start;
   }
 
   .home-left {
     position: sticky;
-    top: 16px;
+    top: 20px;
   }
 
   .home-right .ios-section-header {
@@ -813,10 +843,15 @@ body {
 
   /* Tab bar spans the content width */
   .ios-tab-bar {
+    width: calc(100% - 32px);
     max-width: 760px;
     left: 50%;
     transform: translateX(-50%);
+    bottom: 12px;
     padding: 10px 24px calc(10px + env(safe-area-inset-bottom));
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--separator-opaque);
+    box-shadow: var(--shadow-md);
   }
 
   /* Larger tab icons & labels for tablet touch */
@@ -957,27 +992,28 @@ body {
    Phone simulation in a centered container
    ============================================================ */
 @media (min-width: 1200px) {
-  /* Desktop phone simulation: revert home layout to single column */
+  /* Desktop: keep the app wide and usable on notebook/PC */
   .home-layout {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
   }
 
   .home-left {
-    position: static;
+    position: sticky;
+    top: 24px;
   }
 
   .app-container {
-    max-width: 430px;
+    max-width: 1240px;
     margin: 0 auto;
     min-height: 100dvh;
     position: relative;
-    box-shadow: var(--shadow-lg);
   }
 
-  /* Revert tablet padding for desktop phone simulation */
   .screen-content {
-    padding: 0 16px 16px;
+    padding: 0 32px 32px;
   }
 
   .stats-grid {
@@ -985,33 +1021,37 @@ body {
   }
 
   .history-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
 
   .action-buttons-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
   }
 
   .ios-tab-bar {
-    max-width: 430px;
+    width: calc(100% - 48px);
+    max-width: 840px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+    bottom: 20px;
+    padding: 10px 18px calc(10px + env(safe-area-inset-bottom));
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--separator-opaque);
+    box-shadow: var(--shadow-lg);
   }
 
-  /* Revert tablet sizes for desktop phone simulation */
   .ios-tab-btn {
-    font-size: 10px;
-    gap: 4px;
-    padding: 4px 0;
+    font-size: 11px;
+    gap: 5px;
+    padding: 6px 0;
   }
 
   .ios-tab-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
   }
 
   .ios-list-item {
@@ -1056,7 +1096,7 @@ body {
   }
 
   .ios-section-header {
-    padding: 24px 16px 8px 16px;
+    padding: 28px 0 10px;
   }
 
   .ios-segment {
@@ -1071,13 +1111,13 @@ body {
   }
 
   .ios-search {
-    padding: 8px 12px;
-    gap: 8px;
-    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    gap: 10px;
+    border-radius: var(--radius-md);
   }
 
   .ios-nav-title {
-    font-size: 34px;
+    font-size: 38px;
   }
 
   .ios-empty {
@@ -1100,7 +1140,171 @@ body {
   }
 
   .ios-sheet {
-    max-width: 500px;
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(212, 160, 160, 0.08), transparent 24%),
+      var(--bg-grouped);
+  }
+
+  .app-container {
+    max-width: 1480px;
+    padding: 24px;
+  }
+
+  .desktop-app-shell {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    min-height: calc(100dvh - 48px);
+  }
+
+  .desktop-main-stage,
+  .desktop-standalone-stage {
+    min-width: 0;
+  }
+
+  .desktop-standalone-stage {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  .app-screen-shell {
+    --screen-bottom-space: 32px;
+    background: var(--bg-primary);
+    border: 1px solid var(--separator-opaque);
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .desktop-fixed-screen {
+    height: calc(100dvh - 48px) !important;
+    min-height: calc(100dvh - 48px);
+  }
+
+  .desktop-app-shell .ios-tab-bar {
+    position: sticky;
+    top: 24px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100dvh - 48px);
+    padding: 18px 14px;
+    border: 1px solid var(--separator-opaque);
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .desktop-app-shell .desktop-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px 16px;
+  }
+
+  .desktop-nav-brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .desktop-nav-eyebrow {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .desktop-nav-title {
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .desktop-app-shell .desktop-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .desktop-app-shell .ios-tab-btn {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .desktop-app-shell .ios-tab-btn span {
+    flex: 1;
+    text-align: left;
+  }
+
+  .desktop-app-shell .ios-tab-btn.active {
+    color: var(--text-primary);
+    background: var(--accent-bg);
+  }
+
+  .desktop-app-shell .ios-tab-btn svg,
+  .desktop-app-shell .ios-tab-btn.active svg {
+    width: 22px;
+    height: 22px;
+    transform: none;
+  }
+
+  .desktop-app-shell .desktop-nav-cta {
+    margin-top: 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--separator-opaque);
+    color: var(--text-primary);
+  }
+
+  .desktop-app-shell .desktop-nav-footer {
+    display: block;
+    margin-top: auto;
+    padding: 16px 10px 6px;
+    border-top: 1px solid var(--separator);
+  }
+
+  .desktop-nav-footer-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .desktop-nav-footer-copy {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--text-secondary);
   }
 }
 
